@@ -97,6 +97,26 @@ Board::Board()
 			}
 		
 		}
+		for (int i = 0; i < 8;i++) {
+			for (int j = 0; j < 8; j++) {
+				if (i % 2 == 0) {
+					if (j % 2 == 0) {
+						board[i][j].setSquareColor(false);
+					}
+					else {
+						board[i][j].setSquareColor(true);
+					}
+				}
+				else {
+					if (j % 2 == 0) {
+						board[i][j].setSquareColor(true);
+					}
+					else {
+						board[i][j].setSquareColor(false);
+					}
+				}
+			}
+		}
 		
 
 
@@ -125,11 +145,25 @@ void Board::display() {
 
 		for (int j = 0; j < 8; j++) {
 			if (board[j][i].getPiece().color) {
-				SetConsoleTextAttribute(hconsole, 23);
+				
+				
+				if (board[j][i].getSquareColor()) {
+					SetConsoleTextAttribute(hconsole, 23);
+				}
+				else {
+					SetConsoleTextAttribute(hconsole, 15);
+				
+				}
 			}
 			else {
-				SetConsoleTextAttribute(hconsole, 16);
+				
+				if (board[j][i].getSquareColor()) {
+					SetConsoleTextAttribute(hconsole, 16);
+				}else{
+					SetConsoleTextAttribute(hconsole, 8);
+				}
 			}
+
 			cout << board[j][i].getName() << "   ";
 		}
 	}

@@ -17,6 +17,7 @@ public:
 	void makeEmpty();
 	string getName();
 	void setSquareColor(bool color);
+	bool getSquareColor();
 	void setPiece(Piece newPiece);
 	Piece getPiece();
 };
@@ -39,6 +40,11 @@ string Square::getName() {
 }
 void Square::setSquareColor(bool color) {//setting backround color of the sqaure
 	squareColor = color;
+}
+
+bool Square::getSquareColor()
+{
+	return squareColor;
 }
 
 void Square::setPiece(Piece newPiece)
