@@ -9,7 +9,7 @@ using namespace std;
 class Piece
 {
 public:
-	string name = "";
+	string name;
 	//black:false
 	bool color = false;
 	bool isCaptured = false;
@@ -19,7 +19,12 @@ public:
 
 };
 
-Piece::Piece(string newName,bool newColor = false)
+inline Piece::Piece()
+{
+	name = "";
+}
+
+Piece::Piece(string newName,bool newColor)
 {	
 	
 	if (newName == "Empty") {
@@ -28,7 +33,7 @@ Piece::Piece(string newName,bool newColor = false)
 	else {
 		color = newColor;
 		name = newName;
-		isCaptured == false;
+		isCaptured = false;
 	}
 }
 

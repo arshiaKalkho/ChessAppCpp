@@ -1,7 +1,10 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#include <iostream>
 #include "Piece.h"
+#include "Square.h"
+
 
 using namespace std;
 
@@ -10,7 +13,7 @@ class Board{
 private:	
 
 	//main board 
-	Piece board[8][8];
+	Square board[8][8];
 	
 
 public:
@@ -18,20 +21,94 @@ public:
 
 	Board();
 	~Board();
-
+	void display();
 
 	
 };
 
 Board::Board()
 {
+	//initial table setup
+	for (int i = 0; i < 8; i++) {
+		
+		for (int j = 0; j < 8; j++) {
+			if ((i == 0 || i == 7) && j == 0) {//setting up black rooks
+				board[i][j] = Square(Piece("Rook", false));
+			}
+
+			if ((i == 1 || i == 6) && j == 0) {//setting up black knights
+				board[i][j] = Square(Piece("Knight", false));
+			}
+
+			if ((i == 2 || i == 5) && j == 0) {//setting up black bishops
+				board[i][j] = Square(Piece("Bishop", false));
+			}
+
+			if (i == 3  && j == 0) {//setting up the queen
+				board[i][j] = Square(Piece("Queen", false));
+			}
+			if (i == 4 && j == 0) {//setting up the King
+				board[i][j] = Square(Piece("King", false));
+			}
+
+			if (j == 1) {//black pawns
+				board[i][j] = Square(Piece("Pawn", false));
+			}
+
+
+
+
+			//white starts hear
+			if ((i == 0 || i == 7) && j == 7) {//setting up white rooks
+				board[i][j] = Square(Piece("Rook", true));
+			}
+
+			if ((i == 1 || i == 6) && j == 7) {//setting up white knights
+				board[i][j] = Square(Piece("Knight", true));
+			}
+
+			if ((i == 2 || i == 5) && j == 7) {//setting up white bishops
+				board[i][j] = Square(Piece("Bishop", true));
+			}
+
+			if (i == 3 && j == 7) {//setting up the queen
+				board[i][j] = Square(Piece("Queen", true));
+			}
+			if (i == 4 && j == 7) {//setting up the King
+				board[i][j] = Square(Piece("King", true));
+			}
+
+			if (j == 6) {//black pawns
+				board[i][j] = Square(Piece("Pawn", true));
+			}
+		
+			// setting up empty squares
+		
+		
+		}
+		
+
+
+
+
+	}
 }
 
 Board::~Board()
 {
 }
 
+void Board::display() {
+	for (int i = 0; i < 8; i++) {
+		
+		cout << endl;
 
+		for (int j = 0; j < 8; j++) {
+			cout << board[j][i].getName() << "   ";
+		}
+	}
+	cout << endl;
+}
 
 
 

@@ -6,15 +6,21 @@
 class Square
 {
 	Piece piece;
-	bool empty;
+	bool empty = true;
 
 public:
-	
+	Square();
 	Square(Piece newPiece);
 	bool isEmpty();
+	string getName();
 
 
 };
+
+inline Square::Square()
+{
+	piece = Piece();
+}
 
 Square::Square(Piece newPiece){
 	piece = newPiece;
@@ -23,6 +29,9 @@ Square::Square(Piece newPiece){
 
 bool Square::isEmpty() {
 	return empty;
+}
+string Square::getName() {
+	return piece.name;
 }
 
 
