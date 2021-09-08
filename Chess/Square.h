@@ -7,17 +7,21 @@ class Square
 {
 	Piece piece;
 	bool empty = true;
+	bool squareColor;
+
 
 public:
 	Square();
 	Square(Piece newPiece);
 	bool isEmpty();
+	void makeEmpty();
 	string getName();
-
-
+	void setSquareColor(bool color);
+	void setPiece(Piece newPiece);
+	Piece getPiece();
 };
 
-inline Square::Square()
+Square::Square()
 {
 	piece = Piece();
 }
@@ -33,8 +37,20 @@ bool Square::isEmpty() {
 string Square::getName() {
 	return piece.name;
 }
+void Square::setSquareColor(bool color) {//setting backround color of the sqaure
+	squareColor = color;
+}
 
-
+void Square::setPiece(Piece newPiece)
+{
+	piece = newPiece;
+}
+void Square::makeEmpty() {
+	empty = true;
+}
+Piece Square::getPiece() {
+	return piece;
+}
 
 
 

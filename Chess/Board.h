@@ -2,6 +2,8 @@
 #define BOARD_H
 
 #include <iostream>
+#include <windows.h>
+
 #include "Piece.h"
 #include "Square.h"
 
@@ -32,8 +34,15 @@ Board::Board()
 	for (int i = 0; i < 8; i++) {
 		
 		for (int j = 0; j < 8; j++) {
+			
+			
+			
+			
+			
+			
+			
 			if ((i == 0 || i == 7) && j == 0) {//setting up black rooks
-				board[i][j] = Square(Piece("Rook", false));
+				board[i][j] = Square(Piece(" Rook ", false));
 			}
 
 			if ((i == 1 || i == 6) && j == 0) {//setting up black knights
@@ -45,14 +54,14 @@ Board::Board()
 			}
 
 			if (i == 3  && j == 0) {//setting up the queen
-				board[i][j] = Square(Piece("Queen", false));
+				board[i][j] = Square(Piece("Queen ", false));
 			}
 			if (i == 4 && j == 0) {//setting up the King
-				board[i][j] = Square(Piece("King", false));
+				board[i][j] = Square(Piece(" King ", false));
 			}
 
 			if (j == 1) {//black pawns
-				board[i][j] = Square(Piece("Pawn", false));
+				board[i][j] = Square(Piece(" Pawn ", false));
 			}
 
 
@@ -60,7 +69,7 @@ Board::Board()
 
 			//white starts hear
 			if ((i == 0 || i == 7) && j == 7) {//setting up white rooks
-				board[i][j] = Square(Piece("Rook", true));
+				board[i][j] = Square(Piece(" Rook ", true));
 			}
 
 			if ((i == 1 || i == 6) && j == 7) {//setting up white knights
@@ -72,18 +81,20 @@ Board::Board()
 			}
 
 			if (i == 3 && j == 7) {//setting up the queen
-				board[i][j] = Square(Piece("Queen", true));
+				board[i][j] = Square(Piece("Queen ", true));
 			}
 			if (i == 4 && j == 7) {//setting up the King
-				board[i][j] = Square(Piece("King", true));
+				board[i][j] = Square(Piece(" King ", true));
 			}
 
 			if (j == 6) {//black pawns
-				board[i][j] = Square(Piece("Pawn", true));
+				board[i][j] = Square(Piece(" Pawn ", true));
 			}
 		
 			// setting up empty squares
-		
+			if (j > 1 && j < 6) {
+				board[i][j] = Square();
+			}
 		
 		}
 		
@@ -99,15 +110,31 @@ Board::~Board()
 }
 
 void Board::display() {
+	
+	HANDLE hconsole = GetStdHandle(STD_OUTPUT_HANDLE);//text color
+	
+	
+	
+	SetConsoleTextAttribute(hconsole, 7);
+	
+
+
 	for (int i = 0; i < 8; i++) {
 		
 		cout << endl;
 
 		for (int j = 0; j < 8; j++) {
+			if (board[j][i].getPiece().color) {
+				SetConsoleTextAttribute(hconsole, 23);
+			}
+			else {
+				SetConsoleTextAttribute(hconsole, 16);
+			}
 			cout << board[j][i].getName() << "   ";
 		}
 	}
 	cout << endl;
+	SetConsoleTextAttribute(hconsole, 10);
 }
 
 
