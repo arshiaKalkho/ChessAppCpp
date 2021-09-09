@@ -5,6 +5,7 @@
 #include "Piece.h"
 #include "Square.h"
 #include "windows.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -37,7 +38,13 @@ void initiate() {
 	SetConsoleTextAttribute(hconsole, 15);//yellow
 }
 
+string rmWhiteSpaces(string text) {
+	text.erase(remove_if(text.begin(), text.end(), ::isspace), text.end());
+	return text;
+}
+
 int main() {
+	
 	initiate();
 
 
@@ -45,6 +52,8 @@ int main() {
 	board.display();
 	
 	
+	
+		
 	
 	
 	

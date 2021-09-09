@@ -27,6 +27,10 @@ public:
 	void display();
 	void boardDebugDsp();
 	string setCoordinates(int x,int y);
+	Square getSquare(string coor);
+
+	//oooo here is the big boii
+	bool makeAMove(string from, string to);
 	
 };
 
@@ -202,6 +206,31 @@ string Board::setCoordinates(int x,int y){//get coordinates, return string like 
 	result += row[y];
 
 	return result;
+
+
+}
+
+
+
+Square Board::getSquare(string coor) {
+	
+	for (int i = 0; i < 8; i++) {
+		for (int j = 0; j < 8; j++) {
+			if (board[j][i].getCoordinates() == coor) {
+				return board[j][i];
+			}
+		}
+		cout << endl;
+	}
+
+}
+
+ bool Board::makeAMove(string from, string to)
+{
+	
+	 return false;
+
+
 
 
 }
