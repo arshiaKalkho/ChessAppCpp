@@ -52,7 +52,7 @@ void initiate() {
 
 	cout << "Coded by Arshia A Kalkhorani on September of 2021" << endl;
 	cout << "Loading";
-	Sleep(2000);
+	Sleep(1000);
 	cout << ".";
 	Sleep(1000);
 	cout << ".";
@@ -105,7 +105,9 @@ void clearConsole(){
 
 
 int main() {
-	
+	//fullscreen
+	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
+	SendMessage(GetConsoleWindow(), WM_SYSKEYDOWN, VK_RETURN, 0x20000000);
 	initiate();
 	
 	clearConsole();
