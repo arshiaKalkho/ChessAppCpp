@@ -1,18 +1,21 @@
 #ifndef SQUARE_H
 #define SQUARE_H
 
+#include <string>
 #include "Piece.h"
 
 class Square
 {
 	Piece piece;
+	string name = "";
+	string coordinates;
 	bool empty = true;
 	bool squareColor;
 
 
 public:
 	Square();
-	Square(Piece newPiece);
+	Square(Piece newPiece, string coor = "");
 	bool isEmpty();
 	void makeEmpty();
 	string getName();
@@ -20,16 +23,20 @@ public:
 	bool getSquareColor();
 	void setPiece(Piece newPiece);
 	Piece getPiece();
+	string getCoordinates();
+	void setCoordinate(string coor);
 
 };
 
 Square::Square()
-{
+{	
+
 	piece = Piece();
 }
 
-Square::Square(Piece newPiece){
+Square::Square(Piece newPiece,string coor){
 	piece = newPiece;
+	coordinates = coor;
 	empty = false;
 }
 
@@ -57,6 +64,16 @@ void Square::makeEmpty() {
 }
 Piece Square::getPiece() {
 	return piece;
+}
+
+inline string Square::getCoordinates()
+{
+	return coordinates;
+}
+
+void Square::setCoordinate(string coor)
+{
+	coordinates = coor;
 }
 
 

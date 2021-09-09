@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <windows.h>
+#include <string>
 
 #include "Piece.h"
 #include "Square.h"
@@ -25,7 +26,7 @@ public:
 	~Board();
 	void display();
 	void boardDebugDsp();
-
+	string setCoordinates(int x,int y);
 	
 };
 
@@ -100,6 +101,7 @@ Board::Board()
 		}//setting up square color in a chuckerboard pattern
 		for (int i = 0; i < 8;i++) {
 			for (int j = 0; j < 8; j++) {
+				board[i][j].setCoordinate(this->setCoordinates(i,7-j));//dirty but it works, setting each square coordinates
 				if (i % 2 == 0) {
 					if (j % 2 == 0) {
 						board[i][j].setSquareColor(false);
@@ -144,7 +146,8 @@ void Board::display() {
 		
 		cout << endl;
 		SetConsoleTextAttribute(hconsole, 14);
-		cout << 8-i << "  ";
+		cout << " " << 8-i << "  ";
+		cout << "|";
 		for (int j = 0; j < 8; j++) {
 			if (board[j][i].getPiece().color) {
 				
@@ -165,23 +168,40 @@ void Board::display() {
 					SetConsoleTextAttribute(hconsole, 8);//gray
 				}
 			}
-			cout << board[j][i].getName() << "   ";
+			cout <<"  " << board[j][i].getName() << "  ";
 			SetConsoleTextAttribute(hconsole, 15);//back to normal
+			
 		}
+		cout << "|";
+		cout << endl;
 	}
-	cout << endl;
+	
+	
 	SetConsoleTextAttribute(hconsole, 14);//yellow
-	cout <<"       A        B        C        D        E        F        G        H       " <<endl;
+	cout <<"         A          B         C         D         E         F         G         H        " <<endl;
 	SetConsoleTextAttribute(hconsole, 10);
 
 }
-void Board::boardDebugDsp() {
+void Board::boardDebugDsp() {//use this template to output anything about each square
 	for (int i = 0; i < 8; i++) {
 		for (int j = 0; j < 8; j++) {
-			cout << board[j][i].getSquareColor() << " ";
+			cout << board[j][i].getCoordinates() << " ";
 		}
 		cout << endl;
 	}
+
+
+}
+
+string Board::setCoordinates(int x,int y){//get coordinates, return string like (7, 2) = G3
+	char column[8] = { 'A','B','C','D','E','F','G','H' };
+	char row[8] = { '1','2','3','4','5','6','7','8' };
+
+	string result = "";
+	result += column[x];
+	result += row[y];
+
+	return result;
 
 
 }

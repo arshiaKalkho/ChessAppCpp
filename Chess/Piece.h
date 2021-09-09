@@ -21,7 +21,7 @@ public:
 
 inline Piece::Piece()
 {
-	name = "  __  ";
+	name = "  __  "; // for formatting purposes
 }
 
 Piece::Piece(string newName,bool newColor)

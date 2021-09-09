@@ -13,8 +13,8 @@ void initiate() {
 
 
 	HANDLE hconsole = GetStdHandle(STD_OUTPUT_HANDLE);//text color
-	int random = rand() % 1 + 25;
-	SetConsoleTextAttribute(hconsole, random);//yellow
+	
+	SetConsoleTextAttribute(hconsole, 10);//yellow
 
 	cout << "  cccccccccccccccc         hh               hh         eeeeeeeeeeeeeeeee           sssssssssssssss           sssssssssssssss   " << endl;
 	cout << " cccccccccccccccccc       hhhh             hhhh       eeeeeeeeeeeeeeeeeee         sssssssssssssssss         sssssssssssssssss  " << endl;
@@ -30,6 +30,7 @@ void initiate() {
 
 	cout << endl;
 	cout << endl;
+
 	cout << "Coded by Arshia A Kalkhorani on September of 2021" << endl;
 	cout << endl;
 
@@ -42,6 +43,7 @@ int main() {
 
 	Board board;
 	board.display();
+	
 	
 	
 	
