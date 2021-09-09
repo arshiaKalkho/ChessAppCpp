@@ -20,6 +20,7 @@ public:
 	bool getSquareColor();
 	void setPiece(Piece newPiece);
 	Piece getPiece();
+
 };
 
 Square::Square()

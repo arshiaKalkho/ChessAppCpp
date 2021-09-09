@@ -24,6 +24,7 @@ public:
 	Board();
 	~Board();
 	void display();
+	void boardDebugDsp();
 
 	
 };
@@ -96,7 +97,7 @@ Board::Board()
 				board[i][j] = Square();
 			}
 		
-		}
+		}//setting up square color in a chuckerboard pattern
 		for (int i = 0; i < 8;i++) {
 			for (int j = 0; j < 8; j++) {
 				if (i % 2 == 0) {
@@ -135,41 +136,56 @@ void Board::display() {
 	
 	
 	
-	SetConsoleTextAttribute(hconsole, 7);
+	SetConsoleTextAttribute(hconsole, 7);//yellow
 	
 
 
 	for (int i = 0; i < 8; i++) {
 		
 		cout << endl;
-
+		SetConsoleTextAttribute(hconsole, 14);
+		cout << 8-i << "  ";
 		for (int j = 0; j < 8; j++) {
 			if (board[j][i].getPiece().color) {
 				
 				
 				if (board[j][i].getSquareColor()) {
-					SetConsoleTextAttribute(hconsole, 23);
+					SetConsoleTextAttribute(hconsole, 23);//white blue back
 				}
 				else {
-					SetConsoleTextAttribute(hconsole, 15);
+					SetConsoleTextAttribute(hconsole, 15);//white
 				
 				}
 			}
 			else {
 				
 				if (board[j][i].getSquareColor()) {
-					SetConsoleTextAttribute(hconsole, 16);
+					SetConsoleTextAttribute(hconsole, 16);//black blue back
 				}else{
-					SetConsoleTextAttribute(hconsole, 8);
+					SetConsoleTextAttribute(hconsole, 8);//gray
 				}
 			}
-
 			cout << board[j][i].getName() << "   ";
+			SetConsoleTextAttribute(hconsole, 15);//back to normal
 		}
 	}
 	cout << endl;
+	SetConsoleTextAttribute(hconsole, 14);//yellow
+	cout <<"       A        B        C        D        E        F        G        H       " <<endl;
 	SetConsoleTextAttribute(hconsole, 10);
+
 }
+void Board::boardDebugDsp() {
+	for (int i = 0; i < 8; i++) {
+		for (int j = 0; j < 8; j++) {
+			cout << board[j][i].getSquareColor() << " ";
+		}
+		cout << endl;
+	}
+
+
+}
+
 
 
 
