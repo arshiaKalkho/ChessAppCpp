@@ -15,11 +15,18 @@ public:
 	bool isCaptured = false;
 	Piece();
 	Piece(string name, bool newColor = false);
+	//Piece(Piece &rhs);
+	//void operator=(Piece &rhs);
 	
 
 };
 
-inline Piece::Piece()
+
+
+
+
+
+Piece::Piece()
 {
 	name = "  __  "; // for formatting purposes
 }
@@ -36,6 +43,7 @@ Piece::Piece(string newName,bool newColor)
 		isCaptured = false;
 	}
 }
+
 
 
 

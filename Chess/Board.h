@@ -28,6 +28,7 @@ public:
 	void boardDebugDsp();
 	string setCoordinates(int x,int y);
 	Square getSquare(string coor);
+	string getCoordinates(string coor);
 
 	//oooo here is the big boii
 	bool makeAMove(string from, string to);
@@ -145,7 +146,7 @@ void Board::display() {
 	SetConsoleTextAttribute(hconsole, 7);//yellow
 	
 
-
+	cout << "_________________________________________________________________________________________" << endl;
 	for (int i = 0; i < 8; i++) {
 		
 		cout << endl;
@@ -182,7 +183,8 @@ void Board::display() {
 	
 	
 	SetConsoleTextAttribute(hconsole, 14);//yellow
-	cout <<"         A          B         C         D         E         F         G         H        " <<endl;
+	cout << "_________________________________________________________________________________________" << endl;
+	cout << "         A          B         C         D         E         F         G         H        " <<endl;
 	SetConsoleTextAttribute(hconsole, 10);
 
 }
@@ -202,11 +204,25 @@ string Board::setCoordinates(int x,int y){//get coordinates, return string like 
 	char row[8] = { '1','2','3','4','5','6','7','8' };
 
 	string result = "";
-	result += column[x];
-	result += row[y];
+	result += column[x-1];
+	result += row[y-1];
 
 	return result;
 
+
+}
+
+string Board::getCoordinates(string coor) {
+	string column[8] = { "A","B","C","D","E","F","G","H" };
+	string row[8] = { "1","2","3","4","5","6","7","8" };
+	string first = coor.substr(0,1);
+	string second = coor.substr(1, 1);
+	
+	for (int i = 0; i < 8; i++) {
+		if (first == column[i]) {
+			return row[i] += second;
+		}
+	}
 
 }
 
@@ -224,16 +240,30 @@ Square Board::getSquare(string coor) {
 	}
 
 }
-
+//oh boii
  bool Board::makeAMove(string from, string to)
 {
+	string fromLocation = getCoordinates(from);
+	string toLocation = getCoordinates(to);
 	
-	 return false;
+	string fromi = fromLocation.substr(0, 1);
+	string fromj = fromLocation.substr(1, 1);
+	
+	string toi = toLocation.substr(0, 1);
+	string toj = toLocation.substr(1, 1);
+	 
 
 
+	this->board[stoi(toi)][stoi(toj)].getPiece() = this->board[stoi(fromi)][stoi(fromj)].getPiece();
+	board[stoi(fromi)][stoi(fromj)].getPiece().name = "  __  ";
+	board[stoi(fromi)][stoi(fromj)].getPiece().color = false;
+	board[stoi(fromi)][stoi(fromj)].getPiece().isCaptured = false;
+	board[stoi(fromi)][stoi(fromj)].makeEmpty();
+	
+	return true;
 
-
-}
+ 
+ }
 
 
 

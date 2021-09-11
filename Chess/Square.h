@@ -22,7 +22,7 @@ public:
 	void setSquareColor(bool color);
 	bool getSquareColor();
 	void setPiece(Piece newPiece);
-	Piece getPiece();
+	Piece& getPiece();
 	string getCoordinates();
 	void setCoordinate(string coor);
 
@@ -62,7 +62,7 @@ void Square::setPiece(Piece newPiece)
 void Square::makeEmpty() {
 	empty = true;
 }
-Piece Square::getPiece() {
+Piece& Square::getPiece() {
 	return piece;
 }
 
