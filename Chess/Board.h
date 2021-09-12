@@ -4,6 +4,8 @@
 #include <iostream>
 #include <windows.h>
 #include <string>
+#include <cstring>
+
 
 #include "Piece.h"
 #include "Square.h"
@@ -106,7 +108,7 @@ Board::Board()
 		}//setting up square color in a chuckerboard pattern
 		for (int i = 0; i < 8;i++) {
 			for (int j = 0; j < 8; j++) {
-				board[i][j].setCoordinate(this->setCoordinates(i,7-j));//dirty but it works, setting each square coordinates
+				board[i][j].setCoordinate(this->setCoordinates(i+1,8-j));//dirty but it works, setting each square coordinates
 				if (i % 2 == 0) {
 					if (j % 2 == 0) {
 						board[i][j].setSquareColor(false);
@@ -154,7 +156,7 @@ void Board::display() {
 		cout << " " << 8-i << "  ";
 		cout << "|";
 		for (int j = 0; j < 8; j++) {
-			if (board[j][i].getPiece().color) {
+			if (board[j][i].piece->color) {
 				
 				
 				if (board[j][i].getSquareColor()) {
@@ -243,6 +245,7 @@ Square Board::getSquare(string coor) {
 //oh boii
  bool Board::makeAMove(string from, string to)
 {
+	//preparing the values themselves
 	string fromLocation = getCoordinates(from);
 	string toLocation = getCoordinates(to);
 	
@@ -253,13 +256,17 @@ Square Board::getSquare(string coor) {
 	string toj = toLocation.substr(1, 1);
 	 
 
-
-	this->board[stoi(toi)][stoi(toj)].getPiece() = this->board[stoi(fromi)][stoi(fromj)].getPiece();
-	board[stoi(fromi)][stoi(fromj)].getPiece().name = "  __  ";
-	board[stoi(fromi)][stoi(fromj)].getPiece().color = false;
-	board[stoi(fromi)][stoi(fromj)].getPiece().isCaptured = false;
-	board[stoi(fromi)][stoi(fromj)].makeEmpty();
+	//making the move
 	
+
+	board[stoi(toi)][stoi(toj)].piece = board[stoi(fromi)][stoi(fromj)].piece;
+	
+	//empting the old from square
+	board[stoi(fromi)][stoi(fromj)].makeEmpty();
+	/*board[stoi(fromi)][stoi(fromj)].piece->color = false;
+	board[stoi(fromi)][stoi(fromj)].piece->isCaptured = false;
+	board[stoi(fromi)][stoi(fromj)].makeEmpty();
+	*/
 	return true;
 
  

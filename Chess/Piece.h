@@ -15,6 +15,9 @@ public:
 	bool isCaptured = false;
 	Piece();
 	Piece(string name, bool newColor = false);
+	string getName();
+	Piece(const Piece &newPiece);
+	~Piece();
 	//Piece(Piece &rhs);
 	//void operator=(Piece &rhs);
 	
@@ -30,6 +33,9 @@ Piece::Piece()
 {
 	name = "  __  "; // for formatting purposes
 }
+string Piece::getName() {
+	return name;
+}
 
 Piece::Piece(string newName,bool newColor)
 {	
@@ -42,9 +48,22 @@ Piece::Piece(string newName,bool newColor)
 		name = newName;
 		isCaptured = false;
 	}
+
 }
 
 
+
+Piece::Piece(const Piece &newPiece){
+	name = newPiece.name;
+	color = newPiece.color;
+	isCaptured = newPiece.isCaptured;
+
+}
+
+Piece::~Piece() {
+
+
+}
 
 
 

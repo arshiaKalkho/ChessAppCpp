@@ -121,7 +121,7 @@ int main() {
 	
 	
 	
-	//board.makeAMove("h7", "h5");
+	board.makeAMove("H7", "H5");
 	board.display();
 	
 		
