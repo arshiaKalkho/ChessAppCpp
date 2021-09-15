@@ -17,7 +17,6 @@ public:
 	Piece(string name, bool newColor = false);
 	string getName();
 	Piece(const Piece &newPiece);
-	~Piece();
 	//Piece(Piece &rhs);
 	//void operator=(Piece &rhs);
 	
@@ -54,16 +53,14 @@ Piece::Piece(string newName,bool newColor)
 
 
 Piece::Piece(const Piece &newPiece){
-	name = newPiece.name;
-	color = newPiece.color;
-	isCaptured = newPiece.isCaptured;
-
+	
+		name = newPiece.name;
+		color = newPiece.color;
+		isCaptured = newPiece.isCaptured;
+	
 }
 
-Piece::~Piece() {
 
-
-}
 
 
 

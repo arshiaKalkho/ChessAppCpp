@@ -156,7 +156,7 @@ void Board::display() {
 		cout << " " << 8-i << "  ";
 		cout << "|";
 		for (int j = 0; j < 8; j++) {
-			if (board[j][i].piece->color) {
+			if (board[j][i].getPieceColor()) {
 				
 				
 				if (board[j][i].getSquareColor()) {
@@ -259,7 +259,7 @@ Square Board::getSquare(string coor) {
 	//making the move
 	
 
-	board[stoi(toi)][stoi(toj)].piece = board[stoi(fromi)][stoi(fromj)].piece;
+	board[stoi(toi)][stoi(toj)].setPiece(board[stoi(fromi)][stoi(fromj)].getPiece());
 	
 	//empting the old from square
 	board[stoi(fromi)][stoi(fromj)].makeEmpty();

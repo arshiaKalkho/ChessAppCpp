@@ -6,16 +6,16 @@
 
 class Square
 {
-	
+	Piece* piece = nullptr;
 	string name = "";
 	string coordinates;
 	bool empty = true;
-	bool squareColor;
+	bool squareColor = false;
 
 
 public:
 
-	Piece* piece = nullptr;
+	 
 	
 	
 	
@@ -26,16 +26,18 @@ public:
 	string getName();
 	void setSquareColor(bool color);
 	bool getSquareColor();
-	void setPiece(Piece newPiece);
 	string getCoordinates();
 	void setCoordinate(string coor);
+	bool getPieceColor();
+	Piece& getPiece();
+	void setPiece(Piece &piece);
 
 };
 
 Square::Square()
 {	
 
-	piece = nullptr;
+	piece = new Piece();
 }
 
 Square::Square(Piece newPiece,string coor){
@@ -66,10 +68,6 @@ bool Square::getSquareColor()
 	return squareColor;
 }
 
-void Square::setPiece(Piece newPiece)
-{
-	this->piece = &newPiece;
-}
 void Square::makeEmpty() {
 	empty = true;
 	Piece newPiece = Piece();
@@ -77,9 +75,9 @@ void Square::makeEmpty() {
 }
 /*Piece* Square::getPiece() {
 	return piece;
-}*/
+}*///
 
-inline string Square::getCoordinates()
+string Square::getCoordinates()
 {
 	return coordinates;
 }
@@ -89,7 +87,26 @@ void Square::setCoordinate(string coor)
 	coordinates = coor;
 }
 
+bool Square::getPieceColor() {
+	if (this->piece != nullptr ) {
+		return this->piece->color;
+	}
+	else {
+		return false;
+	}
+}
 
+Piece& Square::getPiece() {
+	return *piece;
+}
+void Square::setPiece(Piece &piece) {
+	if (this->piece == nullptr) {
+		this->piece = new Piece(piece);
+	}
+	else {
+		this->piece = &piece;
+	}
+}
 
 
 #endif 
